@@ -1,0 +1,12 @@
+{
+  "name": "githubdocs",
+  "version": "0.0.0",
+  "description": "",
+  "bin": {
+    "apigen": "./apigen.js",
+    "readme2ghpages": "./readme2ghpages.rb"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD"
+}
