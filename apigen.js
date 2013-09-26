@@ -17,6 +17,12 @@ for (var i = 0; i < lines.length; i++) {
   var line = lines[i];
   if (line.match(/^#/)) {
     out.push('##' + line + '\n' + lines[++i] + '\n');
+  } else if (line.match(/^```/)) {
+    out.push(line);
+    while (!(line = lines[++i]).match(/^```/)) {
+      out.push(line);
+    }
+    out.push(line + '\n');
   } else {
     out.push('&#x20;<a href="#api-' + safeify(line) + '" name="api-' + safeify(line) + '">#</a> ' + line.replace(/^(array([<>\w]*)|number|string)/, function (str) {
       return '<i>' + str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</i>&nbsp;'
