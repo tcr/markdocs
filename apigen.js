@@ -26,7 +26,7 @@ for (var i = 0; i < lines.length; i++) {
   } else {
     out.push('&#x20;<a href="#api-' + safeify(line) + '" name="api-' + safeify(line) + '">#</a> ' + line.replace(/^(array([<>\w]*)|number|string)/, function (str) {
       return '<i>' + str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</i>&nbsp;'
-    }).replace(/\.(\w+)/, '.<b>$1</b>').replace(/^([A-Z]+)\b/, '<b>$1</b>') + '  ');
+    }).replace(/\.(\w+)/, '.<b>$1</b>').replace(/^([A-Z]+)\b/, '<b>$1</b>').replace(/:(\w+)/, '`:$1`') + '  ');
     out.push(lines[++i] + '\n');
   }
 }
