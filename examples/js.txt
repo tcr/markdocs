@@ -1,0 +1,9 @@
+# Pins
+Digital and analog pins can be controlled by an object-oriented API.
+
+
+array<number> hardware.digitalReadPins = []
+An array of which pins are digital inputs.
+
+new hardware.Pin (pin, dir or initialOutput, edge)
+Create and return `pin` object.

@@ -1,0 +1,19 @@
+# Tweeting
+
+Retrieve, post, and search tweets.
+
+GET /:username/tweets
+Get all of a user's tweets, ever! Returns: 
+
+```js
+{
+  "tweets": [
+    {
+      "status": "Everything happens so much",
+      "datetime": "2013-09-03T00:00:00",
+      "username": "horse_ebooks" 
+    }
+    ...
+  ]
+}
+```
