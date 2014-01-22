@@ -49,14 +49,15 @@ for (var i = 0; i < lines.length; i++) {
         return '<i>' + str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</i>&nbsp;'
       })
       // object property (ie: string process.[platform])
-      .replace(/\.(\w+)/, '.<b>$1</b>')
+      .replace(/\.(\w+)/, '.<b>$1</b> ')
       // function arguments
-      .replace(/\([^)]*\)/g, function (str) {
+      .replace(/\(.*\)/g, function (str) {
         return str
           // paren spacing
-          .replace(/\(\s*/, '( ').replace(/\s*\)/, ' )')
+          .replace(/\(\s*/, '( ').replace(/\s*\)$/, ' )')
+          .replace(/\(\s+\)/, '()')
           // codify arguments
-          .replace(/([^\s,\(\)\[\]\{\}\|]+)/g, '`$1`')
+          .replace(/([^\s,\(\)\[\]\{\}\|]+(\([^\(\)\[\]\{\}\|]*\))?)/g, '`$1`')
           // allow "or" unmodified
           .replace(/`\s*`or`/g, '` or')
       })
