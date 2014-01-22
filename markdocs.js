@@ -63,7 +63,9 @@ for (var i = 0; i < lines.length; i++) {
       // HTTP methods (ie: [POST] /:username/tweets)
       .replace(/^([A-Z]+)\b/, '<b>$1</b>')
       // HTTP path segments (ie: POST /[:username]/tweets)
-      .replace(/:(\w+)/, '`:$1`');
+      .replace(/:(\w+)/, '`:$1`')
+      // func -> return
+      .replace(/->\s+([^>]+)$/, '&rarr; <i>$1</i>')
 
     out.push('&#x20;<a href="#api-' + safeify(line) + '" name="api-' + safeify(line) + '">#</a> ' + sig + '  ');
     out.push(lines[++i] + '\n');
@@ -73,7 +75,7 @@ for (var i = 0; i < lines.length; i++) {
 var apimd = out.join('\n');
 
 if (opts.argv.r) {
-  console.error('Generating README.md "API" section from API.txt...');
+  console.error('Generating README.md "API" section...');
   var readme = fs.readFileSync('./README.md', 'utf-8');
 
   var readme = readme.replace(/## API(.|[\r\n])+?\n## /, '## API\n\n' + apimd + '\n\n## ');
