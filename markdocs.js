@@ -45,11 +45,11 @@ for (var i = 0; i < lines.length; i++) {
   else {
     var sig = line
       // type / return type (ie: [string] process.platform)
-      .replace(/^(array([<>\w]*)|number|str(ing)?)/i, function (str) {
+      .replace(/^([\w<>]+)(?=\s+\w)/i, function (str) {
         return '<i>' + str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</i>&nbsp;'
       })
       // object property (ie: string process.[platform])
-      .replace(/\.(\w+)/, '.<b>$1</b> ')
+      .replace(/(\.\w+|\w+\b(?!\s*\.))(?=\s*[\(\[\{=])/i, '<b>$1</b>')
       // function arguments
       .replace(/\(.*\)/g, function (str) {
         return str
@@ -57,9 +57,9 @@ for (var i = 0; i < lines.length; i++) {
           .replace(/\(\s*/, '( ').replace(/\s*\)$/, ' )')
           .replace(/\(\s+\)/, '()')
           // codify arguments
-          .replace(/([^\s,\(\)\[\]\{\}\|]+(\([^\(\)\[\]\{\}\|]*\))?)/g, '`$1`')
+          .replace(/\b([^,\(\)\[\]\{\}\|]+(\([^\(\)\[\]\{\}\|\s]*\))?\b)/g, '`$1`')
           // allow "or" unmodified
-          .replace(/`\s*`or`/g, '` or')
+          .replace(/\b\s+or\s+\b/g, '` or `')
       })
       // HTTP methods (ie: [POST] /:username/tweets)
       .replace(/^([A-Z]+)\b/, '<b>$1</b>')
