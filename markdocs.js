@@ -49,7 +49,7 @@ for (var i = 0; i < lines.length; i++) {
         return '<i>' + str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</i>&nbsp;'
       })
       // object property (ie: string process.[platform])
-      .replace(/(\.\w+|\w+\b(?!\s*\.))(?=\s*[\(\[\{=])/i, '<b>$1</b>')
+      .replace(/(\.\w+|\w+\b(?!\s*\.))(?=\s*[\(\[\{=]|\s*$)/i, '<b>$1</b>')
       // function arguments
       .replace(/\(.*\)/g, function (str) {
         return str
