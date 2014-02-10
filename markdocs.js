@@ -44,6 +44,8 @@ for (var i = 0; i < lines.length; i++) {
   // Signatures.
   else {
     var sig = line
+      // replace `
+      .replace(/`/g, '')
       // type / return type (ie: [string] process.platform)
       .replace(/^([\w<>]+)(?=\s+\w)/i, function (str) {
         return '<i>' + str.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</i>&nbsp;'
