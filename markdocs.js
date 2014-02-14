@@ -66,15 +66,27 @@ function safeify (str) {
 
 function markdownify (data)
 {
-  var lines = data.split(/\n+/).filter(function (n) { return !n.match(/^\s*$/); });
+  var lines = data.split(/\n/);
   var out = [];
 
   for (var i = 0; i < lines.length; i++) {
     var line = lines[i];
 
+    // Skip empty lines
+    if (line.match(/^\s*$/)) {
+      continue;
+    }
+
     // Headers
     if (line.match(/^#/)) {
-      out.push('##' + line + '\n' + lines[++i] + '\n');
+      out.push('##' + line);
+
+      // Immediately subsequent para
+      while (lines[++i].match(/^\s*$/)) {
+        continue;
+      }
+      out.push(lines[i]);
+      out.push('');
     }
 
     // Code sections (following signatures).
