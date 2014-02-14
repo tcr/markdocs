@@ -1,7 +1,7 @@
 {
   "name": "markdocs",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "Generates documentation from Markdown",
   "bin": {
     "markdocs": "./markdocs.js",
     "markdocs-publish": "./readme2ghpages.rb"
@@ -10,6 +10,6 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "optimist": "~0.6.0"
+    "nomnom": "~1.6.2"
   }
 }
