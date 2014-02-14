@@ -104,9 +104,9 @@ function markdownify (data)
             .replace(/\(\s*/, '( ').replace(/\s*\)$/, ' )')
             .replace(/\(\s+\)/, '()')
             // codify arguments
-            .replace(/\b([^,\(\)\[\]\{\}\|]+(\([^\(\)\[\]\{\}\|\s]*\))?\b)/g, '`$1`')
-            // allow "or" unmodified
-            .replace(/\b\s+or\s+\b/g, '` or `')
+            .replace(/\b([^,\(\)\[\]\{\}\|]+(\([^\(\)\[\]\{\}\|\s]*\))?\b)/g, '$1')
+            // italicize "or"
+            .replace(/\b\s+or\s+\b/g, ' *or* ')
         })
         // HTTP methods (ie: [POST] /:username/tweets)
         .replace(/^([A-Z]+)\b/, '<b>$1</b>')
