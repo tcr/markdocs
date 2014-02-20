@@ -81,6 +81,12 @@ function safeify (str) {
   return str.replace(/[^\w]+/g, '-');
 }
 
+function escapify (str) {
+  return str.replace(/[\`\*_\{\}\[\]\(\)#\+\-\.!]/g, function (a) {
+    return '\\' + a;
+  })
+}
+
 function markdownify (data)
 {
   var lines = data.split(/\n/);
@@ -145,7 +151,7 @@ function markdownify (data)
             .replace(/\b(([^,\(\)\[\]\{\}\|]+)\s*(\([^\(\)\[\]\{\}\|\s]*\))?\b)/g, function (_, arg) {
               var split = arg.split(/\s+/);
               if (split.length > 1) {
-                return '<i>' + split[0] + '</i>&nbsp; ' + split.slice(1).join(' ');
+                return '<i>' + escapify(split[0]) + '</i>&nbsp; ' + escapify(split.slice(1).join(' '));
               } else {
                 return arg;
               }
