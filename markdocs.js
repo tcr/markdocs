@@ -166,6 +166,13 @@ function markdownify (data)
         // func -> return
         .replace(/->\s+([^>]+)$/, '&rarr; <i>$1</i>')
 
+      if (sig.match(/\{\s*$/)) {
+        while (lines[i + 1] != null && !lines[i + 1].match(/^\s*\}/)) {
+          sig += '  \n&nbsp; ' + lines[++i].replace(/(\S.*\S)/, '`$1`').replace(/^\s+/g, '&nbsp;&nbsp;');
+        }
+        sig += '  \n&nbsp; ' + lines[++i];
+      }
+
       out.push('&#x20;<a href="#api-' + safeify(line) + '" name="api-' + safeify(line) + '">#</a> ' + sig + '  ');
       out.push(lines[++i] + '\n');
     }
