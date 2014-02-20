@@ -94,12 +94,21 @@ function markdownify (data)
       continue;
     }
 
+    // Eat multi-line comments
+    if (line.match(/^\s*\/\*/)) {
+      while (lines[i + 1] != null && !lines[i + 1].match(/^\s*\*\//)) {
+        i++;
+      }
+      i++;
+      continue;
+    }
+
     // Headers
     if (line.match(/^#/)) {
       out.push('##' + line);
 
       // Immediately subsequent para
-      while (lines[++i].match(/^\s*$/)) {
+      while (lines[++i] != null && lines[i].match(/^\s*$/)) {
         continue;
       }
       out.push(lines[i]);
