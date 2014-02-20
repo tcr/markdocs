@@ -116,7 +116,14 @@ function markdownify (data)
             .replace(/\(\s*/, '( ').replace(/\s*\)$/, ' )')
             .replace(/\(\s+\)/, '()')
             // codify arguments
-            .replace(/\b([^,\(\)\[\]\{\}\|]+(\([^\(\)\[\]\{\}\|\s]*\))?\b)/g, '$1')
+            .replace(/\b(([^,\(\)\[\]\{\}\|]+)\s*(\([^\(\)\[\]\{\}\|\s]*\))?\b)/g, function (_, arg) {
+              var split = arg.split(/\s+/);
+              if (split.length > 1) {
+                return '<i>' + split[0] + '</i>&nbsp; ' + split.slice(1).join(' ');
+              } else {
+                return arg;
+              }
+            })
             // italicize "or"
             .replace(/\b\s+or\s+\b/g, ' *or* ')
         })
