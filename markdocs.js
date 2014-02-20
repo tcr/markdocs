@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var marked = require('marked');
 
 // markdocs convert file.txt [-o file.md]
 // markdocs insert file.txt [-t README.md]
@@ -52,6 +53,22 @@ parser
   })
   .callback(clear)
   .help('clear api docs from an existing markdown file. inbetween <!--markdocs-->...<!--/markdocs--> comments')
+
+parser
+  .script('markdocs')
+  .command('preview')
+  .option('input', {
+    position: 1,
+    full: 'file.txt',
+    required: true,
+  })
+  .option('browser', {
+    abbr: 'b',
+    flag: true,
+    help: 'launch immediately in browser.'
+  })
+  .callback(preview)
+  .help('preview compiled api markdown')
 
 parser.parse()
 
@@ -199,4 +216,16 @@ function clear (opts) {
       console.error('clearing done:', opts.target);
     });
   });
+}
+
+function preview (opts) {
+  console.log('previewing:', opts.input);
+  mungefile(opts.input, function (err, data, write) {
+
+    fs.writeFileSync('/tmp/markdocs.html', '<style>body { font: 14px Helvetica, arial, freesans, clean, sans-serif; width: 750px; padding: 20px 30px; line-height: 1.5; }</style>' + marked(markdownify(data)));
+    console.log('open: file:///tmp/markdocs.html')
+    if (opts.browser) {
+      require('open')('file:///tmp/markdocs.html')
+    }
+  })
 }
