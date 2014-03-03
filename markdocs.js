@@ -73,7 +73,7 @@ parser.parse()
  */
 
 function safeify (str) {
-  return str.replace(/[^\w]+/g, '-');
+  return str.replace(/[^\w]+/g, '-').replace(/^\-+|\-+$/g, '');
 }
 
 function escapify (str) {
