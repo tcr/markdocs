@@ -122,7 +122,17 @@ function markdownify (data)
       while (!(line = lines[++i]).match(/^```/)) {
         out.push(line);
       }
-      out.push(line + '\n');
+      out.push(line + '\n\n');
+    }
+
+    // List items or space-indented paras.
+    else if (line.match(/^\*\s*(.*)|^\s+/)) {
+      var str = line.replace(/^\s*|\s*$/g, '');
+      if (lines[i + 1].match(/^\s*$/)) {
+        str += '\n';
+        ++i;
+      }
+      out.push(str);
     }
 
     // Signatures.

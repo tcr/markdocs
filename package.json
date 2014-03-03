@@ -1,6 +1,6 @@
 {
   "name": "markdocs",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Generates documentation from Markdown",
   "bin": {
     "markdocs": "./markdocs.js",
