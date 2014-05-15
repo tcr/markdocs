@@ -1,6 +1,6 @@
 {
   "name": "markdocs",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "Generates documentation from Markdown",
   "bin": {
     "markdocs": "./markdocs.js",
@@ -12,6 +12,7 @@
   "dependencies": {
     "nomnom": "~1.6.2",
     "marked": "~0.3.1",
-    "open": "0.0.4"
+    "open": "0.0.4",
+    "ent": "~2.0.0"
   }
 }

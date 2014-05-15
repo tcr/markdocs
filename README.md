@@ -6,27 +6,24 @@ Generate API documentation in Markdown for your Github repo or *fun*.
 npm install git+https://github.com/tcr/markdocs
 ```
 
-Convert a text representation:
+Convert a text representation inbetween &lt;!--markdocs--&gt; ... &lt!--/markdocs--&gt; tags. Then `generate` or `restore` a clean API representation.
 
 ```
-$ markdocs convert API.txt
-converting: API.txt
-conversion done: API.md
+$ markdocs generate README.md
+generating: README.md
+done.
 ```
 
-Even insert into an existing Markdown file inbetween &lt;!--markdocs--&gt; ... &lt!--/markdocs--&gt; tags:
-
 ```
-$ markdocs insert docs/API.txt
-insert: docs/API.txt
-into: README.md
-insertion done: README.md
+$ markdocs restore README.md
+restoring: README.md
+done.
 ```
 
 
 # Examples
 
-Free form pairs of lines (header:description or signature:description) are converted to syntactically messy and visually beautiful Markdown docs.
+Free form pairs of lines (`header \n description` or `signature \n description`) are converted to syntactically messy and visually beautiful Markdown docs.
 
 
 ## Script Example
