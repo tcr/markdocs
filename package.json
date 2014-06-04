@@ -3,8 +3,7 @@
   "version": "0.4.0",
   "description": "Generates documentation from Markdown",
   "bin": {
-    "markdocs": "./markdocs.js",
-    "markdocs-publish": "./readme2ghpages.rb"
+    "marktype": "./markdocs.js"
   },
   "repository": "",
   "author": "",
