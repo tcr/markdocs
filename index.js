@@ -38,13 +38,14 @@ function generate (line)
         })
         // italicize "or"
         .replace(/\b\s+or\s+\b/g, ' *or* ')
+        + '\n'
     })
     // HTTP methods (ie: [POST] /:username/tweets)
     .replace(/^([A-Z]+)\b/, '<b>$1</b>')
     // HTTP path segments (ie: POST /[:username]/tweets)
     .replace(/:(\w+)/, '`:$1`')
     // func -> return
-    .replace(/->\s+([^>]+)$/, '&rarr; <i>$1</i>')
+    .replace(/(\n\s*)?->\s+([^>]+)$/, '&rarr; <i>$2</i>\n')
 
   if (sig.match(/\{\s*$/)) {
     while (lines[i + 1] != null && !lines[i + 1].match(/^\s*\}/)) {
@@ -53,7 +54,9 @@ function generate (line)
     sig += '  \n&nbsp; ' + lines[++i];
   }
 
-  return ('&#x20;<a href="#api-' + safeify(line) + '" name="api-' + safeify(line) + '">#</a> ' + sig + '  ');
+  sig = sig.replace(/\n$/, '').replace(/\n/, '  \n') + '  ';
+
+  return ('&#x20;<a href="#api-' + safeify(line) + '" name="api-' + safeify(line) + '">#</a> ' + sig);
 }
 
 function restore (data)
