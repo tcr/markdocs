@@ -5,13 +5,16 @@
   "bin": {
     "marktype": "./marktype.js"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tcr/markdocs.git"
+  },
   "author": "",
   "license": "BSD",
   "dependencies": {
     "nomnom": "~1.6.2",
     "marked": "~0.3.1",
     "open": "0.0.4",
-    "ent": "~2.0.0"
+    "he": "~0.4.1"
   }
 }
