@@ -5,9 +5,21 @@
   "bin": {
     "marktype": "./marktype.js"
   },
-  "repository": "",
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tcr/markdocs.git"
+  },
+  "keywords": [
+    "markdown",
+    "linking",
+    "documentation"
+  ],
+  "author": "Tim Ryan",
   "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/tcr/markdocs/issues"
+  },
+  "homepage": "https://github.com/tcr/markdocs",
   "dependencies": {
     "nomnom": "~1.6.2",
     "marked": "~0.3.1",
